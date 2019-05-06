@@ -8,18 +8,28 @@
   <title>example</title>
 </head>
 <body>
-  
+  <input id="input" type="text"/>
+  <input id="format-input" type="text"/>
+  <h1 id="time">type timestamp</h1>
   <script>
-    // 1556837800 1556837347 1556837265
-    function timestamp(date) {
+    var inputEle = document.getElementById('input');
+    var formatInputEle = document.getElementById('format-input');
+    var timeEle = document.getElementById('time');
+
+    inputEle.onkeyup = showTime
+
+    formatInputEle.onkeyup = showTime
+    
+
+    function showTime() {
+      timeEle.innerText = timestamp(inputEle.value, formatInputEle.value) || 'type timestamp'
+    }
+
+    function timestamp(date, format) {
+      if(date && date.length < 10) return;
       date = new Date(date * 1000);
       return formatTime(date, arguments[1]);
     }
-    var a = '1556837800'
-    var aa = timestamp(a, 'yy/mm/d');
-    console.log(aa);
-    
-
   </script>
 </body>
 </html>
