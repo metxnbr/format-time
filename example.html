@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./index.js"></script>
+  <title>example</title>
+</head>
+<body>
+  
+  <script>
+    // 1556837800 1556837347 1556837265
+    function timestamp(date) {
+      date = new Date(date * 1000);
+      return formatTime(date, arguments[1]);
+    }
+    var a = '1556837800'
+    var aa = timestamp(a, 'yy/mm/d');
+    console.log(aa);
+    
+
+  </script>
+</body>
+</html>
