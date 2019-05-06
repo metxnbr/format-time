@@ -5,11 +5,11 @@ function formatNumber(n) {
 
 function formatTime(date, format) {
   if(!format) {
-    format = 'YYYY-MM-DD';
+    format = 'yyyy-mm-dd';
   };
 
   function check() {
-    var regex = /^(Y{2,4})([^YMD]+)M{1,2}([^YMD]+)(D{1,2})$/i;
+    var regex = /^(y{2,4})([^ymd]+)m{1,2}([^ymd]+)(d{1,2}).*$/i;
     return regex.test(format);
   }
 
@@ -18,8 +18,9 @@ function formatTime(date, format) {
     return;
   }
 
-  var regex = /[^YMD]+/i;
+  var regex = /[^ymd]+/ig;
   var space = format.match(regex);
+  console.log(space)
   if(!space) {
     return;
   }
@@ -29,14 +30,15 @@ function formatTime(date, format) {
   var day = date.getDate();
 
   function formatN(n, i) {
-    var s = i === 1 ? 'M' : 'D';
+    var s = i === 1 ? 'y' : 'd';
     var regex = new RegExp(s, 'gi');
     var count = format.match(regex);
+    var division = space[i] || ''
     if(count && count.length === 2) {
-      return formatNumber(n);
+      return formatNumber(n) + division;
     };
-    return n
+    return n + division;
   }
   
-  return [year, month, day].map(formatN).join(space);
+  return [year, month, day].map(formatN).join('');
 }
