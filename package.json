@@ -1,6 +1,6 @@
 {
-  "name": "format-time",
-  "version": "0.0.1",
+  "name": "je-format-time",
+  "version": "0.0.1-alpha.0",
   "main": "index.js",
   "author": "Jesse",
   "license": "MIT",
