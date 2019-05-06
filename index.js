@@ -1,44 +1,56 @@
-function formatNumber(n) {
-  n = n.toString()
-  return n[1] ? n : '0' + n
-}
-
 function formatTime(date, format) {
   if(!format) {
     format = 'yyyy-mm-dd';
   };
 
-  function check() {
-    var regex = /^(y{2,4})([^ymd]+)m{1,2}([^ymd]+)(d{1,2}).*$/i;
-    return regex.test(format);
-  }
-
-  if(!check()) {
-    console.log('format is incorrect')
-    return;
-  }
-
-  var regex = /[^ymd]+/ig;
-  var space = format.match(regex);
-  console.log(space)
-  if(!space) {
-    return;
-  }
+  var nums = format.match(/y+|m+|d+/ig);
+  var divisions = format.match(/[^ymd]+/ig);
 
   var year = date.getFullYear();
   var month = date.getMonth() + 1;
   var day = date.getDate();
 
-  function formatN(n, i) {
-    var s = i === 1 ? 'y' : 'd';
-    var regex = new RegExp(s, 'gi');
-    var count = format.match(regex);
-    var division = space[i] || ''
-    if(count && count.length === 2) {
-      return formatNumber(n) + division;
+  var order = nums.map(function(item) {
+    if(/^y+$/i.test(item)) {
+      return year
     };
-    return n + division;
+
+    if(/^m+$/i.test(item)) {
+      return month
+    };
+
+    if(/^d+$/i.test(item)) {
+      return day
+    }
+  });
+
+  function addZero(count) {
+    var i = 0;
+    var s = '';
+    while(count > i) {
+      s =+ '0'
+      i+=1;
+    }
+    return s
+  }
+
+  function formatNumber(n, i) {
+    n = n.toString()
+
+    var divide = divisions && divisions[i] || '';
+    var type = nums[i];
+    
+    if(/^y+$/i.test(type)) {
+      n = n.slice(n.length - type.length);
+    };
+
+    if(/^[md]+$/i.test(type)) {
+      const zeros = addZero(type.length - n.length)
+      n = zeros + n;
+    };
+
+    return n + divide;
   }
   
-  return [year, month, day].map(formatN).join('');
+  return order.map(formatNumber).join('');
 }

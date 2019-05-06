@@ -16,10 +16,21 @@
     var formatInputEle = document.getElementById('format-input');
     var timeEle = document.getElementById('time');
 
-    inputEle.onkeyup = showTime
+    inputEle.onkeyup = debounce(showTime, 0.2 * 1000);
 
-    formatInputEle.onkeyup = showTime
-    
+    formatInputEle.onkeyup = debounce(showTime, 0.2 * 1000);
+
+    function debounce(fn, wait) {
+      var timeout;
+      return function() {
+        const context = this;
+        const args = arguments;
+        clearTimeout(timeout);
+        timeout = setTimeout(function() {
+          fn.apply(context, args)
+        }, wait)
+      }
+    }
 
     function showTime() {
       timeEle.innerText = timestamp(inputEle.value, formatInputEle.value) || 'type timestamp'
