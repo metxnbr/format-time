@@ -5,7 +5,8 @@
 `npm i je-format-time`
 
 ```js
-var formatTime = require('je-format-time');
+const formatTime = require('je-format-time');
+import formatTime from 'je-format-time';
 
 <script src="./je-format-time"></script>
 
