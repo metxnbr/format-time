@@ -3,5 +3,9 @@
   "version": "0.0.1",
   "main": "index.js",
   "author": "Jesse",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/metxnbr/format-time"
+  }
 }
