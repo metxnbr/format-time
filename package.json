@@ -7,5 +7,12 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/metxnbr/format-time"
-  }
+  },
+  "keywords": [
+    "time",
+    "date",
+    "format",
+    "convert",
+    "util"
+  ]
 }
