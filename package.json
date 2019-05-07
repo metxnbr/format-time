@@ -1,6 +1,7 @@
 {
   "name": "je-format-time",
   "version": "0.0.1-alpha.0",
+  "description": "A library to format a string and a date object",
   "main": "index.js",
   "author": "Jesse",
   "license": "MIT",
